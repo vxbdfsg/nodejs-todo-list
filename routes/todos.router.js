@@ -4,7 +4,7 @@ import Todo from '../schemas/todo.schema.js';
 
 const router = express.Router();
 
-const createdTodoSchema = joi.object({
+const createTodoSchema = joi.object({
     value: joi.string().min(1).max(50).required(),
 });
 
@@ -14,7 +14,7 @@ const createdTodoSchema = joi.object({
 router.post('/todos', async (req, res, next) => {
     try {
         // 클라이언트에게 전달받은 데이터를 검증합니다.
-        const validateBody = await createdTodoSchema.validateAsync(req.body);
+        const validateBody = await createTodoSchema.validateAsync(req.body);
 
         // 클라이언트에게 전달받은 value 데이터를 변수에 저장합니다.
         const { value } = validateBody;
